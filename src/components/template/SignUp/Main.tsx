@@ -3,11 +3,39 @@ import { FaFacebook, FaGoogle, FaRegEye, FaRegEyeSlash, FaTwitter } from 'react-
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa6';
+import useMutate from "@hooks/useMutate";
+import showNotification from "@utils/notify";
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { fetchUserProfile } from "src/Store/userAthe";
+import { AppDispatch } from "src/Store";
 
 const SignUpMain = () => {
      const [showPassword, setShowPassword] = useState(false);
+     const [loading, setLoading] = useState(false);
+     const dispatch = useDispatch<AppDispatch>();
+     const navigate = useNavigate();
+
+     const { mutate } = useMutate<any>({
+          endpoint: "user/register",
+          mutationKey: ["user/register"],
+          onSuccess: (data) => {
+               const token = data?.result?.data?.token;
+               setLoading(false);
+               if (token) {
+                    Cookies.set("access_token", token, { expires: 1 });
+                    dispatch(fetchUserProfile(token));
+                    dispatch({ type: "auth/setIsLogIn", payload: true });
+                    navigate("/", { replace: true });
+                    showNotification("Logged in successfully", "success");
+               }
+          },
+          onError: () => {
+               setLoading(false);
+          },
+     });
 
      // Validation Schema using Yup
      const validationSchema = Yup.object({
@@ -15,6 +43,7 @@ const SignUpMain = () => {
           first_name: Yup.string().required('First Name is required'),
           last_name: Yup.string().required('Last Name is required'),
           password: Yup.string().required('Password is required'),
+          // @ts-ignore
           confirm_password: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match'),
           terms: Yup.boolean().oneOf([true], 'You must accept the terms and conditions'),
      });
@@ -31,10 +60,17 @@ const SignUpMain = () => {
 
      // Handle Form Submission
      // @ts-expect-error
-     const onSubmit = (values, { setSubmitting }) => {
-          console.log('Form values:', values);
-          setSubmitting(false);
-          // Add your login logic here
+     const onSubmit = (values) => {
+          setLoading(true)
+          mutate(
+               {
+                    first_name: values?.first_name,
+                    last_name: values?.last_name,
+                    email: values?.email,
+                    password: values?.password,
+                    password_confirmation: values?.confirm_password
+               }
+          )
      };
 
      return (
@@ -63,7 +99,7 @@ const SignUpMain = () => {
                               validationSchema={validationSchema}
                               onSubmit={onSubmit}
                          >
-                              {({ isSubmitting, errors, touched }) => (
+                              {() => (
                                    <Form className="space-y-4">
                                         <div className='flex flex-col gap-4'>
                                              <div>
@@ -154,9 +190,9 @@ const SignUpMain = () => {
                                         <Button
                                              type="submit"
                                              className="bg-purple-700 text-white hover:bg-purple-800 p-2 flex justify-center w-full rounded-lg text-xl"
-                                             disabled={isSubmitting}
+                                             loading={loading}
                                         >
-                                             {isSubmitting ? 'Submitting...' : 'Submit'}
+                                             {loading ? 'Submitting...' : 'Submit'}
                                         </Button>
                                    </Form>
                               )}

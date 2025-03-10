@@ -6,7 +6,7 @@ const HomeLoginMain = () => {
      const navigate = useNavigate()
 
      return (
-          <div className="bg-cover bg-[center_-5rem] min-h-screen flex items-center justify-center px-5 py-20 md:py-0"
+          <div className="bg-cover bg-[center_-5rem] min-h-screen flex items-center justify-center px-5 pt-10"
                style={
                     {
                          backgroundImage: `url(${homeBG})`
@@ -23,12 +23,12 @@ const HomeLoginMain = () => {
                          </p>
                     </div>
                     {/* tow cards section */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-20 md:mt-32 mt-10">
-                         <div className="bg-gray-400 p-4 rounded-xl ">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-20 md:mt-20 mt-10">
+                         <div className="bg-gray-400 p-4 rounded-xl relative">
                               <p className="text-6xl font-medium text-violet-900 pb-10 max-w-[500px]">
                                    if u want to add a new meter reading
                               </p>
-                              <div className='flex w-full items-end justify-end'>
+                              <div className='absolute bottom-5 right-5'>
                                    <Button className="text-white p-2 bg-violet-900 hover:bg-violet-950 duration-300 rounded-xl h-12 w-40 mt-10 text-2xl"
                                    onClick={() => navigate('/meter-reading')}
                                    >
@@ -37,7 +37,7 @@ const HomeLoginMain = () => {
                               </div>
                          </div>
 
-                         <div className="bg-violet-900 p-4 rounded-xl">
+                         <div className="bg-violet-900 p-4 rounded-xl relative">
                               <p className="text-6xl font-medium text-white pb-10 max-w-[500px]">
                                    if u want to see your history and the bast readings
                               </p>

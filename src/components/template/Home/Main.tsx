@@ -1,8 +1,13 @@
 import { Button } from '@mantine/core'
 import heroBg from '/public/assets/hero-bg.png'
 import { FaStar } from "react-icons/fa6";
+import { useNavigate } from 'react-router';
+import { useSelector } from "react-redux";
 
 const HomeMain = () => {
+     const navigate = useNavigate();
+     const isLogIn = useSelector((state: any) => state.auth.isLogIn);
+
      return (
           <div
                className="bg-cover md:bg-[center_-5rem] h-screen flex items-center justify-center"
@@ -21,6 +26,11 @@ const HomeMain = () => {
                     <div className='absolute bottom-32 right-0 p-4'>
                          <Button className='text-white px-4 py-2 !rounded-xl !bg-emerald-500 font-bold text-xl'
                          size='lg'
+                         onClick={() => {
+                              navigate(
+                                   isLogIn ? "home-login" : "login"
+                              )
+                         }}
                          >
                               Get started
                          </Button>

@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Burger, Drawer } from "@mantine/core";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [opened, setOpened] = useState(false);
+  const isLogIn = useSelector((state: any) => state.auth.isLogIn);
 
   return (
     <div className="container mx-auto fixed top-0 left-0 right-0 z-50 bg-inherit">
@@ -19,10 +21,18 @@ const Header = () => {
         <div className="hidden md:flex items-center gap-6 ">
           <Link to="/" className="text-xl font-bold">Home</Link>
           <Link to="/about" className="text-xl font-bold">About</Link>
-          <Link to="/login" className="text-xl font-bold">Login</Link>
-          <Link to="/sign-up" className="bg-emerald-500 text-white px-4 py-2 rounded-xl font-bold">
-            Sign Up
-          </Link>
+          {isLogIn ? (
+            <Link to="/home-login" className="bg-emerald-500 text-white px-4 py-2 rounded-xl font-bold">
+              Get start
+            </Link>
+          ) : (
+            <>
+              <Link to="/login" className="text-xl font-bold">Login</Link>
+              <Link to="/sign-up" className="bg-emerald-500 text-white px-4 py-2 rounded-xl font-bold">
+                Sign Up
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile Menu */}
