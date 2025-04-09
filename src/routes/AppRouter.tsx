@@ -13,6 +13,7 @@ const Login = React.lazy(() => import("@pages/Login/Main"));
 const SignUp = React.lazy(() => import("@pages/SignUp/Main"));
 const HomeLogin = React.lazy(() => import("@pages/HomeLogin/Main"));
 const MeterReading = React.lazy(() => import("@pages/MeterReading/Main"));
+const Devices = React.lazy(() => import("@pages/Devices/Main"));
 
 const AppRouter = () => {
   const isLogIn = useSelector((state: any) => state.auth.isLogIn);
@@ -69,6 +70,16 @@ const AppRouter = () => {
             <Suspense fallback={<LoadingSpinner />}>
               <ProtectedRoute>
                 <MeterReading />
+              </ProtectedRoute>
+            </Suspense>
+          ),
+        },
+        {
+          path: "devices",
+          element: (
+            <Suspense fallback={<LoadingSpinner />}>
+              <ProtectedRoute>
+                <Devices />
               </ProtectedRoute>
             </Suspense>
           ),

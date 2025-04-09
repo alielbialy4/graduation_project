@@ -39,11 +39,11 @@ const HomeLoginMain = () => {
 
                          <div className="bg-violet-900 p-4 rounded-xl relative">
                               <p className="text-6xl font-medium text-white pb-10 max-w-[500px]">
-                                   if u want to see your history and the bast readings
+                                   if u want to see your Devices and the bast readings
                               </p>
                               <div className='flex w-full items-end justify-end'>
                                    <Button className="text-violet-900 p-2 bg-white hover:bg-gray-400 duration-300 rounded-xl h-12 w-40 mt-10 text-2xl"
-                                   onClick={() => navigate('/history')}
+                                   onClick={() => navigate('/devices')}
                                    >
                                         Click here
                                    </Button>
