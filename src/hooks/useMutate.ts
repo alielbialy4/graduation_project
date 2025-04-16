@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import showNotification from "@utils/notify";
+import Cookies from "js-cookie";
 
 type UseMutateProps<T> = {
   method?: "post" | "put" | "delete";
@@ -25,6 +26,7 @@ function useMutate<T>({
   onUploadProgress,
 }: UseMutateProps<T>) {
   const queryClient = useQueryClient();
+  const token = Cookies.get("access_token");
 
   // @ts-expect-error: queryKeyToInvalidate type is unknown
   const { data, isSuccess, mutate, failureReason, isError, error, isLoading } =
@@ -39,10 +41,12 @@ function useMutate<T>({
             ? {
                 "Content-Type": "multipart/form-data",
                 "Accept-Language": "en",
+                "Authorization": `Bearer ${token}`,
               }
             : {
                 "Content-Type": "application/json; charset=utf-8",
                 "Accept-Language": "en",
+                "Authorization": `Bearer ${token}`,
               },
           onUploadProgress: (progressEvent) => {
             if (onUploadProgress && progressEvent.total) {

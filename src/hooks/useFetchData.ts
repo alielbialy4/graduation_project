@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import showNotification from "@utils/notify";
+import Cookies from "js-cookie";
 
 type UseFetchProps<T> = {
   queryKey: any;
@@ -21,13 +22,13 @@ function useFetch<T>({
   onSuccess,
 }: UseFetchProps<T>) {
   const baseURL = import.meta.env.VITE_BASE_URL;
-
+  const token = Cookies.get("access_token");
   const config = {
     headers: {
       "Accept-Language": "en",
+      "Authorization": `Bearer ${token}`,
     },
   };
-
 
   const queryOptions: UseQueryOptions<T, any> = {
     queryKey,
@@ -43,11 +44,10 @@ function useFetch<T>({
     select,
     // @ts-expect-error - Fix this later
     onError: (error: any) => {
-      const errorMessage =
-        error?.response?.data?.message || "error";
-      
+      const errorMessage = error?.response?.data?.message || "error";
+
       showNotification(errorMessage, "error");
-      
+
       if (onError) {
         onError(error);
       }

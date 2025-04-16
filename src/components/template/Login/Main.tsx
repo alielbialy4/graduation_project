@@ -21,7 +21,6 @@ const LoginMain = () => {
      const validationSchema = Yup.object({
           email: Yup.string().email("Invalid email address").required("Email is required"),
           password: Yup.string().required("Password is required"),
-          terms: Yup.boolean().oneOf([true], "You must accept the terms and conditions"),
      });
 
      const { mutate } = useMutate<any>({
@@ -46,7 +45,6 @@ const LoginMain = () => {
      const initialValues = {
           email: "",
           password: "",
-          terms: false,
      };
 
      const onSubmit = (values: any) => {
@@ -103,12 +101,6 @@ const LoginMain = () => {
                                                   )}
                                              </div>
                                         </div>
-
-                                        <div className="flex items-center justify-center">
-                                             <Field type="checkbox" name="terms" className="mr-2" />
-                                             <Text className="text-sm">I have read and agreed to the terms</Text>
-                                        </div>
-                                        <ErrorMessage name="terms" component="div" className="text-red-500 text-sm mt-1" />
 
                                         <Button
                                              type="submit"

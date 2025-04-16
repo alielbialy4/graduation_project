@@ -14,6 +14,8 @@ const SignUp = React.lazy(() => import("@pages/SignUp/Main"));
 const HomeLogin = React.lazy(() => import("@pages/HomeLogin/Main"));
 const MeterReading = React.lazy(() => import("@pages/MeterReading/Main"));
 const Devices = React.lazy(() => import("@pages/Devices/Main"));
+const Rooms = React.lazy(() => import("@pages/Rooms/Main"));
+const DevicesReport = React.lazy(() => import("@pages/DevicesReport/Main"));
 
 const AppRouter = () => {
   const isLogIn = useSelector((state: any) => state.auth.isLogIn);
@@ -37,7 +39,6 @@ const AppRouter = () => {
   }
 
   const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-    console.log("ProtectedRoute - isAuthChecked:", isAuthChecked, "isLogIn:", isLogIn);
     if (!isLogIn) {
       return <Navigate to="/login" />;
     }
@@ -80,6 +81,26 @@ const AppRouter = () => {
             <Suspense fallback={<LoadingSpinner />}>
               <ProtectedRoute>
                 <Devices />
+              </ProtectedRoute>
+            </Suspense>
+          ),
+        },
+        {
+          path: "rooms",
+          element: (
+            <Suspense fallback={<LoadingSpinner />}>
+              <ProtectedRoute>
+                <Rooms />
+              </ProtectedRoute>
+            </Suspense>
+          ),
+        },
+        {
+          path: "devices/report",
+          element: (
+            <Suspense fallback={<LoadingSpinner />}>
+              <ProtectedRoute>
+                <DevicesReport />
               </ProtectedRoute>
             </Suspense>
           ),

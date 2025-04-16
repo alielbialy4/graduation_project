@@ -23,14 +23,14 @@ const HomeLoginMain = () => {
                          </p>
                     </div>
                     {/* tow cards section */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-20 md:mt-20 mt-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:mt-20 mt-10">
                          <div className="bg-gray-400 p-4 rounded-xl relative">
-                              <p className="text-6xl font-medium text-violet-900 pb-10 max-w-[500px]">
-                                   if u want to add a new meter reading
+                              <p className="text-4xl font-medium text-violet-900 pb-10 max-w-[500px]">
+                                   if u want to see your Report
                               </p>
                               <div className='absolute bottom-5 right-5'>
-                                   <Button className="text-white p-2 bg-violet-900 hover:bg-violet-950 duration-300 rounded-xl h-12 w-40 mt-10 text-2xl"
-                                   onClick={() => navigate('/meter-reading')}
+                                   <Button className="text-white p-2 bg-violet-900 hover:bg-violet-950 duration-300 rounded-xl h-12 w-40 mt-10 text-xl"
+                                   onClick={() => navigate('/devices/report')}
                                    >
                                         Click here
                                    </Button>
@@ -38,17 +38,43 @@ const HomeLoginMain = () => {
                          </div>
 
                          <div className="bg-violet-900 p-4 rounded-xl relative">
-                              <p className="text-6xl font-medium text-white pb-10 max-w-[500px]">
+                              <p className="text-4xl font-medium text-white pb-10 max-w-[500px]">
                                    if u want to see your Devices and the bast readings
                               </p>
                               <div className='flex w-full items-end justify-end'>
-                                   <Button className="text-violet-900 p-2 bg-white hover:bg-gray-400 duration-300 rounded-xl h-12 w-40 mt-10 text-2xl"
+                                   <Button className="text-violet-900 p-2 bg-white hover:bg-gray-400 duration-300 rounded-xl h-12 w-40 mt-10 text-xl"
                                    onClick={() => navigate('/devices')}
                                    >
                                         Click here
                                    </Button>
                               </div>
                          </div>
+
+                         <div className="bg-gray-400 p-4 rounded-xl relative">
+                              <p className="text-4xl font-medium text-violet-900 pb-10 max-w-[500px]">
+                              if u want to see your Rooms
+                              </p>
+                              <div className='absolute bottom-5 right-5'>
+                                   <Button className="text-white p-2 bg-violet-900 hover:bg-violet-950 duration-300 rounded-xl h-12 w-40 mt-10 text-xl"
+                                   onClick={() => navigate('/rooms')}
+                                   >
+                                        Click here
+                                   </Button>
+                              </div>
+                         </div>
+
+                         {/* <div className="bg-violet-900 p-4 rounded-xl relative">
+                              <p className="text-4xl font-medium text-white pb-10 max-w-[500px]">
+                                   if u want to see your Devices and the bast readings
+                              </p>
+                              <div className='flex w-full items-end justify-end'>
+                                   <Button className="text-violet-900 p-2 bg-white hover:bg-gray-400 duration-300 rounded-xl h-12 w-40 mt-10 text-xl"
+                                   onClick={() => navigate('/devices')}
+                                   >
+                                        Click here
+                                   </Button>
+                              </div>
+                         </div> */}
                     </div>
                </div>
           </div>
