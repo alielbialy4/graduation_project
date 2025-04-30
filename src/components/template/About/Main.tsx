@@ -16,7 +16,7 @@ const AboutMain = () => {
                          the team how worked on this project and the time and energy on it.
                     </h1>
 
-                    <div className='flex items-center flex-wrap gap-5 mt-24'>
+                    <div className='flex items-center gap-5 mt-24'>
                          <Card
                               title="John Doe"
                               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -54,14 +54,6 @@ const AboutMain = () => {
                               description="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
                               imageUrl="https://placehold.co/500x600"
                               altText="Charlie Black"
-                              className="w-1/4 h-1/4"
-                              onClick={() => console.log("Card clicked")}
-                         />
-                         <Card
-                              title="David Green"
-                              description="At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum."
-                              imageUrl="https://placehold.co/500x600"
-                              altText="David Green"
                               className="w-1/4 h-1/4"
                               onClick={() => console.log("Card clicked")}
                          />
