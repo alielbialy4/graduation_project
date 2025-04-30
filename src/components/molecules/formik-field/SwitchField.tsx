@@ -3,7 +3,7 @@ import React from "react";
 
 interface SwitchProps {
      name: string; // Required for Formik
-     label: string;
+     label?: string;
      disabled?: boolean;
      color?: "blue" | "gray"; // Added prop to toggle color theme
      onChange?: (checked: boolean) => void; // Changed to accept boolean
@@ -31,19 +31,19 @@ const SwitchField: React.FC<SwitchProps> = ({
           color === "blue"
                ? {
                     background: field.value
-                         ? "bg-brand-500"
-                         : "bg-gray-200 dark:bg-white/10",
+                         ? "bg-[#10b981]"
+                         : "bg-gray-800 dark:bg-black/10",
                     knob: field.value
-                         ? "translate-x-full bg-white"
-                         : "translate-x-0 bg-white",
+                         ? "translate-x-full bg-gray-800"
+                         : "translate-x-0 bg-gray-800",
                }
                : {
                     background: field.value
-                         ? "bg-gray-800 dark:bg-white/10"
-                         : "bg-gray-200 dark:bg-white/10",
+                         ? "bg-gray-800 dark:bg-black/10"
+                         : "bg-gray-200 dark:bg-black/10",
                     knob: field.value
-                         ? "translate-x-full bg-white"
-                         : "translate-x-0 bg-white",
+                         ? "translate-x-full bg-gray-800"
+                         : "translate-x-0 bg-gray-800",
                };
 
      return (

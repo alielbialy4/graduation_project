@@ -1,6 +1,7 @@
 import CustomTable from '@molecules/table/CustomTable'
 import homeBG from '/public/assets/home-login.png'
 import useFetch from '@hooks/useFetchData'
+import SwitchActive from './SwitchActive'
 
 const DevicesReportMain = () => {
      const columns = [
@@ -20,6 +21,17 @@ const DevicesReportMain = () => {
                     return (
                          <div className="flex items-center gap-2">
                               {Math.floor(Math.random() * (99999 - 11111 + 1)) + 11111} K.W
+                         </div>
+                    );
+               },
+          },
+          // active and inactive to
+          {
+               header: "is_active",
+               cell: ({ row }: { row: { original: { id: number; is_active: boolean } } }) => {
+                    return (
+                         <div className="flex items-center gap-2">
+                              <SwitchActive id={row.original.id} isActive={row.original.is_active} />
                          </div>
                     );
                },

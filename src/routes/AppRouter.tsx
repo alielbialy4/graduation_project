@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchUserProfile } from "src/Store/userAthe";
 import { AppDispatch } from "src/Store";
 import Cookies from "js-cookie";
+import About from "@pages/About/Main";
 
 const Login = React.lazy(() => import("@pages/Login/Main"));
 const SignUp = React.lazy(() => import("@pages/SignUp/Main"));
@@ -102,6 +103,14 @@ const AppRouter = () => {
               <ProtectedRoute>
                 <DevicesReport />
               </ProtectedRoute>
+            </Suspense>
+          ),
+        },
+        {
+          path: "about",
+          element: (
+            <Suspense fallback={<LoadingSpinner />}>
+              <About />
             </Suspense>
           ),
         },
