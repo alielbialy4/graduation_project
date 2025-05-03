@@ -11,6 +11,7 @@ import MainData from "./MainData";
 import DeleteMain from "./DeleteMain";
 import homeBG from '/public/assets/home-login.png'
 import { BiShow } from "react-icons/bi";
+import SwitchActive from "@tamplate/DevicesReport/SwitchActive";
 
 const ModeratorsMain = () => {
      const [modalOpen, setModalOpen] = useState(false);
@@ -37,6 +38,21 @@ const ModeratorsMain = () => {
                accessorKey: "created_at",
                header: "Created At",
                cell: (info: { row: { original: any } }) => info.row.original.created_at,
+          },
+          {
+               header: "is Active",
+               cell: ({ row }: { row: { original: { id: number; is_active: boolean; room?: { id: number; name: string } } } }) => {
+                    return (
+                         <div className="flex items-center gap-2">
+                              <SwitchActive
+                                   id={row?.original?.id}
+                                   isActive={row?.original?.is_active}
+                                   roomId={row?.original?.room?.id}
+                                   name={row?.original?.room?.name || "N/A"}
+                              />
+                         </div>
+                    );
+               },
           },
           {
                header: "Actions",
@@ -136,7 +152,7 @@ const ModeratorsMain = () => {
                          <p className="text-sm font-semibold">Room: {dataToEdit?.room?.name}</p>
                          <p className="text-sm font-semibold">Measure: {Math.floor(Math.random() * (99999 - 11111 + 1)) + 11111} K.W</p>
                          <p className="text-sm font-semibold">Created At: {dataToEdit?.created_at}</p>
-                         
+
                     </div>
                </ModalComponent>
 

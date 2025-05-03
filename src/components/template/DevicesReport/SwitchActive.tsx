@@ -2,9 +2,11 @@ import useMutate from "@hooks/useMutate"
 import SwitchField from "@molecules/formik-field/SwitchField"
 import { Form, Formik } from "formik"
 
-const SwitchActive = ({id, isActive}: {
+const SwitchActive = ({id, isActive, roomId, name}: {
      id: number | string,
-     isActive: boolean
+     isActive: boolean,
+     roomId: any,
+     name: string
 }) => {
      const { mutate} = useMutate({
           endpoint: `user/devices`,
@@ -35,7 +37,7 @@ const SwitchActive = ({id, isActive}: {
                               color="blue"
                               disabled={false}
                               onChange={(checked) => {
-                                   mutate({ id: id, is_active: checked ? 1 : 0 })
+                                   mutate({ id: id, is_active: checked ? 1 : 0, room_id: roomId, name: name })
                               }}
                          />
                     </Form>
